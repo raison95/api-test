@@ -24,7 +24,8 @@ pipeline {
                 withSonarQubeEnv(SONAR_SERVER) {
                     sh "${scannerHome}/bin/sonar-scanner \
                         -D sonar.projectKey=api-test \
-                        -D sonar.branch.name=${ghprbSourceBranch} \
+                        -Dsonar.pullrequest.branch=${env.CHANGE_BRANCH} \
+                        -Dsonar.pullrequest.base=${env.CHANGE_TARGET} \
                         -D sonar.exclusions=resources/**,**/*.java"
                 }
             }
