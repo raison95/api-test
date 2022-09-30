@@ -5,7 +5,7 @@ pipeline {
     }
     environment{
        SONAR_SERVER = 'sonarqube-server'
-       SONAR_SCANNER = 'sonarqube-scanner'
+       def scannerHome = tool 'sonarqube-scanner'
     }
     stages {
         stage('code checkout') {
@@ -19,7 +19,6 @@ pipeline {
             }
         }
         stage('sonarqube analysis') {
-            def scannerHome = tool SONAR_SCANNER;
             withSonarQubeEnv(SONAR_SERVER) {
                 sh "${scannerHome}/bin/sonar-scanner \
                     -D sonar.projectKey=api-test \
