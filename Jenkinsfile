@@ -1,7 +1,7 @@
 pipeline {
     agent any
     triggers {
-        githubPullRequest()
+        githubPush()
     }
     environment{
        SONAR_SERVER = 'sonarqube-server'
