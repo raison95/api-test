@@ -19,10 +19,12 @@ pipeline {
             }
         }
         stage('sonarqube analysis') {
-            withSonarQubeEnv(SONAR_SERVER) {
-                sh "${scannerHome}/bin/sonar-scanner \
-                    -D sonar.projectKey=api-test \
-                    -D sonar.exclusions=resources/**,**/*.java"
+            steps {
+                withSonarQubeEnv(SONAR_SERVER) {
+                    sh "${scannerHome}/bin/sonar-scanner \
+                        -D sonar.projectKey=api-test \
+                        -D sonar.exclusions=resources/**,**/*.java"
+                }
             }
         }
         stage("Quality Gate") {
