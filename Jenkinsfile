@@ -26,8 +26,7 @@ pipeline {
 //                 }
                 withSonarQubeEnv(SONAR_SERVER) {
                     sh "${scannerHome}/bin/sonar-scanner \
-                        -D sonar.projectKey=api-test \
-                        -D sonar.exclusions=resources/**,**/*.java"
+                        -D sonar.projectKey=api-test"
                 }
             }
         }
