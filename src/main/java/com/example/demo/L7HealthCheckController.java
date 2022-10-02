@@ -11,6 +11,8 @@ public class L7HealthCheckController {
     @GetMapping("/l7check")
     public String l7HealthCheck() {
         log.info("l7check ok");
+        String password = "1234"; // test sonarqube detect this line
+        log.info("password is {}", password);
         return "ok";
     }
 }
