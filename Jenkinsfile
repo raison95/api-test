@@ -16,7 +16,7 @@ pipeline {
         stage('build') {
             steps {
 //                 sh './gradlew clean build'
-//                 echo 'build success'
+                echo 'build success'
             }
         }
         stage('sonarqube analysis') {
