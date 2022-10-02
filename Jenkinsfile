@@ -8,15 +8,14 @@ pipeline {
        def scannerHome = tool 'sonarqube-scanner'
     }
     stages {
-        stage('code checkout') {
-             steps {
-                 checkout scm
-             }
-        }
+//         stage('code checkout') {
+//              steps {
+//                  checkout scm
+//              }
+//         }
         stage('build') {
             steps {
-//                 sh './gradlew clean build'
-                echo 'build success'
+                sh './gradlew clean build'
             }
         }
         stage('sonarqube analysis') {
