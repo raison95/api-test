@@ -27,8 +27,6 @@ pipeline {
                 withSonarQubeEnv(SONAR_SERVER) {
                     sh "${scannerHome}/bin/sonar-scanner \
                         -D sonar.projectKey=api-test \
-                        -D sonar.pullrequest.branch=${env.CHANGE_BRANCH} \
-                        -D sonar.pullrequest.base=${env.CHANGE_TARGET} \
                         -D sonar.exclusions=resources/**,**/*.java"
                 }
             }
