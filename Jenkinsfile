@@ -21,13 +21,14 @@ pipeline {
         }
         stage('sonarqube analysis') {
             steps {
-                withSonarQubeEnv(SONAR_SERVER) {
-                    sh "${scannerHome}/bin/sonar-scanner \
-                        -D sonar.projectKey=api-test \
-                        -Dsonar.pullrequest.branch=${env.CHANGE_BRANCH} \
-                        -Dsonar.pullrequest.base=${env.CHANGE_TARGET} \
-                        -D sonar.exclusions=resources/**,**/*.java"
+                withSonarQubeEnv() {
+                    sh "./gradlew sonarqube"
                 }
+//                 withSonarQubeEnv(SONAR_SERVER) {
+//                     sh "${scannerHome}/bin/sonar-scanner \
+//                         -D sonar.projectKey=api-test \
+//                         -D sonar.exclusions=resources/**,**/*.java"
+//                 }
             }
         }
 //         stage("Quality Gate") {
