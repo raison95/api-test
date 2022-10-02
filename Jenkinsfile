@@ -27,6 +27,7 @@ pipeline {
                 withSonarQubeEnv(SONAR_SERVER) {
                     sh "${scannerHome}/bin/sonar-scanner \
                         -D sonar.projectKey=api-test \
+                        -D sonar.scm.disabled=True \
                         -D sonar.exclusions=**/*.java"
                 }
             }
