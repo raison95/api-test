@@ -16,13 +16,13 @@ pipeline {
         stage('build') {
             steps {
 //                 sh './gradlew clean build'
-                echo 'build success'
+//                 echo 'build success'
             }
         }
         stage('sonarqube analysis') {
             steps {
                 withSonarQubeEnv() {
-                    sh "./gradlew sonarqube"
+                    sh "./gradlew clean test sonarqube"
                 }
 //                 withSonarQubeEnv(SONAR_SERVER) {
 //                     sh "${scannerHome}/bin/sonar-scanner \
