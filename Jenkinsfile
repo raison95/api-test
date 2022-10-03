@@ -31,9 +31,7 @@ pipeline {
                         -D sonar.sources=src/main/java \
                         -D sonar.test=src/test/java \
                         -D sonar.java.binaries=build/classes \
-                        -D sonar.pullrequest.key=${ghprbPullId} \
-                        -D sonar.pullrequest.base=${ghprbTargetBranch} \
-                        -D sonar.pullrequest.branch=${ghprbSourceBranch}"
+                        -D sonar.pullrequest.key=${ghprbPullId}"
                 }
             }
         }
