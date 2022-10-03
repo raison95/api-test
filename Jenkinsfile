@@ -30,7 +30,7 @@ pipeline {
                         -D sonar.language=java \
                         -D sonar.sources=src/main/java \
                         -D sonar.test=src/test/java \
-                        -D sonar.java.binaries=build/classes
+                        -D sonar.java.binaries=build/classes \
                         -D sonar.issuesReport.console.enable=true"
                 }
             }
