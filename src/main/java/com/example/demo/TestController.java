@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 @Slf4j
 @RestController
@@ -58,8 +60,19 @@ public class TestController {
             }
         }
         log.info("requestURI(): {}", request.getRequestURI());
+        log.info("body(): {}", extractBodyFromHttpServletRequest(request));
         log.info("============POST request end============");
 
         return "POST ok";
+    }
+
+    private String extractBodyFromHttpServletRequest(HttpServletRequest request) {
+        Scanner s = null;
+        try {
+            s = new Scanner(request.getInputStream(), "UTF-8").useDelimiter("\\A");
+        } catch (IOException e) {
+            log.error("{}", e.getStackTrace());
+        }
+        return s.hasNext() ? s.next() : "";
     }
 }
