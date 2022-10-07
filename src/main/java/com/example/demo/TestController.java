@@ -30,9 +30,9 @@ public class TestController {
         return new ResponseEntity<>(HttpStatus.valueOf(status));
     }
 
-    @PostMapping("/callback")
-    public ResponseEntity<String> callback(@RequestParam Integer status, @RequestHeader HttpHeaders httpHeaders, @RequestBody String body) {
-        log.info("============request start============");
+    @GetMapping("/callback")
+    public String callbackGet(@RequestParam Integer status, @RequestHeader HttpHeaders httpHeaders, @RequestBody String body) {
+        log.info("============GET request start============");
         for (Map.Entry<String, List<String>> entry : httpHeaders.entrySet()) {
             String key = entry.getKey();
             List<String> values = entry.getValue();
@@ -41,8 +41,22 @@ public class TestController {
             }
         }
         log.info("body: {}", body);
-        log.info("============request end============");
-        log.info("httpStatus to be responded: {}", HttpStatus.valueOf(status));
-        return new ResponseEntity<>(HttpStatus.valueOf(status));
+        log.info("============GET request end============");
+        return body;
+    }
+
+    @PostMapping("/callback")
+    public String callbackPost(@RequestHeader HttpHeaders httpHeaders, @RequestBody String body) {
+        log.info("============POST request start============");
+        for (Map.Entry<String, List<String>> entry : httpHeaders.entrySet()) {
+            String key = entry.getKey();
+            List<String> values = entry.getValue();
+            for (String value : values) {
+                log.info("header key: {}, value: {}", key, value);
+            }
+        }
+        log.info("body: {}", body);
+        log.info("============POST request end============");
+        return body;
     }
 }
