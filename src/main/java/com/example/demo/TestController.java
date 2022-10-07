@@ -31,7 +31,7 @@ public class TestController {
     }
 
     @GetMapping("/callback")
-    public String callbackGet(@RequestParam Integer status, @RequestHeader HttpHeaders httpHeaders, @RequestBody String body) {
+    public String callbackGet(@RequestHeader HttpHeaders httpHeaders, @RequestBody String body) {
         log.info("============GET request start============");
         for (Map.Entry<String, List<String>> entry : httpHeaders.entrySet()) {
             String key = entry.getKey();
