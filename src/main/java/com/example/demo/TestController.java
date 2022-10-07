@@ -29,4 +29,20 @@ public class TestController {
         log.info("httpStatus to be responded: {}", HttpStatus.valueOf(status));
         return new ResponseEntity<>(HttpStatus.valueOf(status));
     }
+
+    @PostMapping("/callback")
+    public ResponseEntity<String> callback(@RequestParam Integer status, @RequestHeader HttpHeaders httpHeaders, @RequestBody String body) {
+        log.info("============request start============");
+        for (Map.Entry<String, List<String>> entry : httpHeaders.entrySet()) {
+            String key = entry.getKey();
+            List<String> values = entry.getValue();
+            for (String value : values) {
+                log.info("header key: {}, value: {}", key, value);
+            }
+        }
+        log.info("body: {}", body);
+        log.info("============request end============");
+        log.info("httpStatus to be responded: {}", HttpStatus.valueOf(status));
+        return new ResponseEntity<>(HttpStatus.valueOf(status));
+    }
 }
